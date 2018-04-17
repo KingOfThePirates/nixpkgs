@@ -33,7 +33,7 @@ buildPythonPackage rec {
   libraryPath = lib.makeLibraryPath (
     []
     ++ lib.optionals cudaSupport [ cudatoolkit.lib cudatoolkit.out ]
-    ++ lib.optionals openclSupport ([ clblas ] ++ lib.optional (!stdenv.isDarwin) ocl-icd)
+    ++ lib.optionals openclSupport [ ocl-icd clblas ]
   );
 
   preBuild = ''
@@ -47,7 +47,7 @@ buildPythonPackage rec {
 
   postFixup = ''
     rm $out/lib/libgpuarray-static.a
-  '' + stdenv.lib.optionalString (!stdenv.isDarwin) ''
+
     function fixRunPath {
       p=$(patchelf --print-rpath $1)
       patchelf --set-rpath "$p:$libraryPath" $1
@@ -75,7 +75,7 @@ buildPythonPackage rec {
     description = "Library to manipulate tensors on GPU.";
     license = licenses.free;
     maintainers = with maintainers; [ artuuge ];
-    platforms = platforms.unix;
+    platforms = platforms.linux;
   };
 
 }

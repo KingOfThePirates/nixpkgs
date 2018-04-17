@@ -1,4 +1,4 @@
-{ stdenv, fetchzip, makeWrapper, jre, pythonPackages, coreutils
+{ stdenv, fetchzip, makeWrapper, jre, pythonPackages
 , RSupport? true, R
 , mesosSupport ? true, mesos
 , version
@@ -53,7 +53,6 @@ stdenv.mkDerivation rec {
 
     for n in $(find $out/lib/${untarDir}/bin -type f ! -name "*.*"); do
       makeWrapper "$n" "$out/bin/$(basename $n)"
-      substituteInPlace "$n" --replace dirname ${coreutils.out}/bin/dirname
     done
     ln -s $out/lib/${untarDir}/lib/spark-assembly-*.jar $out/share/java
   '';

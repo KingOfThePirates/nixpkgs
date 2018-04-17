@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   name = "google-gflags-${version}";
-  version = "2.2.1";
+  version = "2.2.0";
 
   src = fetchFromGitHub {
     owner = "gflags";
     repo = "gflags";
     rev = "v${version}";
-    sha256 = "12wkihc4f07qmhyqk3cjylj8v5xz2bjrq75p7aq1vvvj60fbp58k";
+    sha256 = "1y5808ky8qhjwv1nf134czz0h2p2faqvjhxa9zxf8mg8hn4ns9wp";
   };
 
   nativeBuildInputs = [ cmake ];

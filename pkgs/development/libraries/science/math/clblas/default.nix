@@ -7,7 +7,6 @@
 , python
 , ocl-icd
 , opencl-headers
-, Accelerate, CoreGraphics, CoreVideo, OpenCL
 , gtest
 }:
 
@@ -41,19 +40,11 @@ stdenv.mkDerivation rec {
     gfortran
     blas
     python
-    boost
-    gtest
-  ] ++ stdenv.lib.optionals (!stdenv.isDarwin) [
     ocl-icd
     opencl-headers
-  ] ++ stdenv.lib.optionals stdenv.isDarwin [
-    Accelerate
-    CoreGraphics
-    CoreVideo
-  ];
-  propagatedBuildInputs = stdenv.lib.optionals stdenv.isDarwin [
-    OpenCL
-  ];
+    boost
+    gtest
+  ]; 
 
   enableParallelBuilding = true;
 
@@ -65,7 +56,7 @@ stdenv.mkDerivation rec {
     '';
     license = licenses.asl20;
     maintainers = with maintainers; [ artuuge ];
-    platforms = platforms.unix;
+    platforms = platforms.linux;
   };
 
 }
