@@ -1,10 +1,14 @@
-{ pkgs, makeScope, libsForQt5 }:
+{ pkgs, newScope }:
 
 let
-  packages = self: with self; {
+  callPackage = newScope self;
+
+  self = rec {
 
     deepin-gtk-theme = callPackage ./deepin-gtk-theme { };
+
     deepin-icon-theme = callPackage ./deepin-icon-theme { };
+
     deepin-terminal = callPackage ./deepin-terminal {
       inherit (pkgs.gnome3) libgee vte;
       wnck = pkgs.libwnck3;
@@ -12,5 +16,4 @@ let
 
   };
 
-in
-  makeScope libsForQt5.newScope packages
+in self

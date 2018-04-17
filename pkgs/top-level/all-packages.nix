@@ -1358,8 +1358,6 @@ with pkgs;
 
   bash-supergenpass = callPackage ../tools/security/bash-supergenpass { };
 
-  sweep-visualizer = callPackage ../tools/misc/sweep-visualizer { };
-
   syscall_limiter = callPackage ../os-specific/linux/syscall_limiter {};
 
   syslogng = callPackage ../tools/system/syslog-ng { };
@@ -4550,8 +4548,6 @@ with pkgs;
 
   rdma-core = callPackage ../os-specific/linux/rdma-core { };
 
-  react-native-debugger = callPackage ../development/tools/react-native-debugger { };
-
   read-edid = callPackage ../os-specific/linux/read-edid { };
 
   redir = callPackage ../tools/networking/redir { };
@@ -5160,8 +5156,6 @@ with pkgs;
   tmuxp = callPackage ../tools/misc/tmuxp { };
 
   tmuxinator = callPackage ../tools/misc/tmuxinator { };
-
-  tmuxPlugins = recurseIntoAttrs (callPackage ../misc/tmux-plugins { });
 
   tmsu = callPackage ../tools/filesystems/tmsu { };
 
@@ -6004,8 +5998,6 @@ with pkgs;
 
   ecl = callPackage ../development/compilers/ecl { };
   ecl_16_1_2 = callPackage ../development/compilers/ecl/16.1.2.nix { };
-
-  eli = callPackage ../development/compilers/eli { };
 
   eql = callPackage ../development/compilers/eql {};
 
@@ -8411,8 +8403,6 @@ with pkgs;
 
   armadillo = callPackage ../development/libraries/armadillo {};
 
-  arrow-cpp = callPackage ../development/libraries/arrow-cpp {};
-
   assimp = callPackage ../development/libraries/assimp { };
 
   asio = callPackage ../development/libraries/asio { };
@@ -8933,7 +8923,7 @@ with pkgs;
 
   gettext = callPackage ../development/libraries/gettext { };
 
-  gflags = google-gflags;
+  gflags = callPackage ../development/libraries/gflags { };
 
   gf2x = callPackage ../development/libraries/gf2x {};
 
@@ -8967,8 +8957,6 @@ with pkgs;
   libgit2_0_25 = callPackage ../development/libraries/git2/0.25.nix {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-
-  glbinding = callPackage ../development/libraries/glbinding { };
 
   gle = callPackage ../development/libraries/gle { };
 
@@ -10885,8 +10873,6 @@ with pkgs;
   p11-kit = callPackage ../development/libraries/p11-kit { };
 
   paperkey = callPackage ../tools/security/paperkey { };
-
-  parquet-cpp = callPackage ../development/libraries/parquet-cpp {};
 
   pangoxsl = callPackage ../development/libraries/pangoxsl { };
 
@@ -17333,11 +17319,6 @@ with pkgs;
 
   qiv = callPackage ../applications/graphics/qiv { };
 
-  processing = processing3;
-  processing3 = callPackage ../applications/graphics/processing3 {
-    jdk = oraclejdk8;
-  };
-
   # perhaps there are better apps for this task? It's how I had configured my preivous system.
   # And I don't want to rewrite all rules
   procmail = callPackage ../applications/misc/procmail { };
@@ -19560,10 +19541,7 @@ with pkgs;
 
   clearlooks-phenix = callPackage ../misc/themes/clearlooks-phenix { };
 
-  deepin = recurseIntoAttrs (import ../desktops/deepin {
-    inherit pkgs libsForQt5;
-    inherit (lib) makeScope;
-  });
+  deepin = recurseIntoAttrs (callPackage ../desktops/deepin { });
 
   enlightenment = recurseIntoAttrs (callPackage ../desktops/enlightenment {
     callPackage = newScope pkgs.enlightenment;
@@ -19805,9 +19783,7 @@ with pkgs;
 
   blas = callPackage ../development/libraries/science/math/blas { };
 
-  clblas = callPackage ../development/libraries/science/math/clblas {
-    inherit (darwin.apple_sdk.frameworks) Accelerate CoreGraphics CoreVideo OpenCL;
-  };
+  clblas = callPackage ../development/libraries/science/math/clblas { };
 
   cliquer = callPackage ../development/libraries/science/math/cliquer { };
 
@@ -20097,9 +20073,6 @@ with pkgs;
   z3 = callPackage ../applications/science/logic/z3 { python = python2; };
 
   tlaplus = callPackage ../applications/science/logic/tlaplus {};
-  tlaps = callPackage ../applications/science/logic/tlaplus/tlaps.nix {};
-  tlaplusToolbox = callPackage ../applications/science/logic/tlaplus/toolbox.nix {gtk = gtk2;};
-
 
   aiger = callPackage ../applications/science/logic/aiger {};
 
